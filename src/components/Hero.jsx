@@ -65,13 +65,26 @@ const Hero = () => {
 
    useGSAP(() => {
       gsap.set("#video-frame", {
-         clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
-         borderRadius: "0 0 40% 15%",
+         //  clipPath: "polygon(14% 20%, 72% 20%, 88% 90%, 0% 95%)",
+         clipPath: "polygon(20% 0, 80% 0, 90% 94%, 3% 84%)",
+
+         borderRadius: "0 0 30% 30%",
       });
 
       gsap.from("#video-frame", {
          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
          borderRadius: "0 0 0 0",
+         ease: "power1.inOut",
+         scrollTrigger: {
+            trigger: "#video-frame",
+            start: "center center",
+            end: "bottom center",
+            scrub: true,
+         },
+      });
+
+      gsap.to("#video-frame", {
+         clipPath: "polygon(20% 0, 80% 0, 90% 94%, 3% 84%)",
          ease: "power1.inOut",
          scrollTrigger: {
             trigger: "#video-frame",
@@ -96,9 +109,9 @@ const Hero = () => {
          )}
          <div
             id='video-frame'
-            className='relative h-dvh overflow-hidden w-screen z-10 rounded-lg bg-blue-75'
+            className='relative h-dvh overflow-hidden w-screen z-10 rounded-lg bg-blue-75  '
          >
-            <div>
+            <div className=''>
                <div className='mask-clip-path absolute-center absolute z-50 size-64 overflow-hidden rounded-lg cursor-pointer'>
                   <div
                      onClick={handleMiniVideoClick}
@@ -121,7 +134,7 @@ const Hero = () => {
                   loop
                   muted
                   id='next-video'
-                  className='size-64 invisible absolute-center absolute z-20 object-cover object-center'
+                  className='size-64 invisible absolute-center absolute z-20 object-cover object-center border-4'
                   onLoadedData={handleVideoLoad}
                />
                <video

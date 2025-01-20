@@ -33,14 +33,11 @@ const About = () => {
 
             <AnimatedTitle
                title={
-                  "Disc <b>o</b>ver the world's <br /> l<b>a</b>rgest shared adventure"
+                  "Disc<b>o</b>ver the world's <br /> l<b>a</b>rgest shared adventure"
                }
                containerClass={"mt-5 !text-black text-center"}
             />
-            {/* <div className='uppercase mt-5 text-center text-4xl leading-[0.8] md:text-[6rem]'>
-               Disc <b>o</b>ver the world's <br /> l<b>a</b>rgest shared
-               adventure
-            </div> */}
+
             <div className='about-subtext'>
                <p className=''>
                   The Game of Games begins-your life, now an epic MMORPG
