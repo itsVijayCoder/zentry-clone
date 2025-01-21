@@ -65,10 +65,11 @@ const Hero = () => {
 
    useGSAP(() => {
       gsap.set("#video-frame", {
-         //  clipPath: "polygon(14% 20%, 72% 20%, 88% 90%, 0% 95%)",
-         clipPath: "polygon(20% 0, 80% 0, 90% 94%, 3% 84%)",
+         // clipPath: "polygon(14% 2%, 80% 0, 92% 93%, 5% 84%)",
+         // borderRadius: "0 0 20% 35%",
 
-         borderRadius: "0 0 30% 30%",
+         clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
+         borderRadius: "0% 0% 40% 10%",
       });
 
       gsap.from("#video-frame", {
@@ -84,7 +85,8 @@ const Hero = () => {
       });
 
       gsap.to("#video-frame", {
-         clipPath: "polygon(20% 0, 80% 0, 90% 94%, 3% 84%)",
+         // clipPath: "polygon(14% 2%, 80% 0, 92% 93%, 5% 84%)",
+         clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
          ease: "power1.inOut",
          scrollTrigger: {
             trigger: "#video-frame",
@@ -141,7 +143,7 @@ const Hero = () => {
                   src={getVideoSrc(
                      currentIndex === totalVideos - 1 ? 1 : currentIndex
                   )}
-                  autoPlay
+                  // autoPlay
                   loop
                   className='absolute top-0 left-0 size-full object-cover object-center'
                   onLoadedData={handleVideoLoad}
@@ -149,11 +151,11 @@ const Hero = () => {
                />
             </div>
 
-            <h1 className='special-font hero-heading absolute bottom-5 right-5 z-50 text-blue-75'>
+            <h1 className='special-font hero-heading absolute bottom-16  md:bottom-5 right-5 z-50 text-blue-75'>
                G<b>a</b>ming
             </h1>
 
-            <div className='absolute left-0 top-0 z-40 size-full'>
+            <div className='absolute left-0 top-0 z-40 size-full '>
                <div className='mt-24 px-5 sm:px-10'>
                   <h1 className='special-font hero-heading text-blue-100'>
                      redefi<b>n</b>e
@@ -171,7 +173,19 @@ const Hero = () => {
                </div>
             </div>
          </div>
-         <h1 className='special-font hero-heading absolute bottom-5 right-5  text-black'>
+
+         <div className='absolute left-0 top-0  size-full text-black'>
+            <div className='mt-24 px-5 sm:px-10'>
+               <h1 className='special-font hero-heading'>
+                  redefi<b>n</b>e
+               </h1>
+               <p className='mb-5 max-w-64 font-robert-regular'>
+                  Enter the Metagame Layer <br /> Unleash the Play Economy
+               </p>
+            </div>
+         </div>
+
+         <h1 className='special-font hero-heading absolute bottom-16  md:bottom-5 right-5  text-black'>
             G<b>a</b>ming
          </h1>
       </div>
