@@ -81,6 +81,7 @@ const Navbar = () => {
                         <a
                            href={`#${item.toLowerCase()}`}
                            className='nav-hover-btn'
+                           key={item}
                         >
                            {item}
                         </a>

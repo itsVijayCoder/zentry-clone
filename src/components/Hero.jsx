@@ -99,7 +99,7 @@ const Hero = () => {
    const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
 
    return (
-      <div className='relative h-dvh w-screen overflow-x-hidden'>
+      <div className='relative w-screen overflow-x-hidden h-dvh'>
          {isLoading && (
             <div className='flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50'>
                <div className='three-body'>
@@ -111,13 +111,13 @@ const Hero = () => {
          )}
          <div
             id='video-frame'
-            className='relative h-dvh overflow-hidden w-screen z-10 rounded-lg bg-blue-75  '
+            className='relative z-10 w-screen overflow-hidden rounded-lg h-dvh bg-blue-75 '
          >
             <div className=''>
-               <div className='mask-clip-path absolute-center absolute z-50 size-64 overflow-hidden rounded-lg cursor-pointer'>
+               <div className='absolute z-50 overflow-hidden rounded-lg cursor-pointer mask-clip-path absolute-center size-64'>
                   <div
                      onClick={handleMiniVideoClick}
-                     className='origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-150 hover:opacity-100'
+                     className='transition-all duration-500 ease-in origin-center scale-50 opacity-0 hover:scale-150 hover:opacity-100'
                   >
                      <video
                         ref={nextVideoRef}
@@ -125,7 +125,7 @@ const Hero = () => {
                         loop
                         muted
                         id='current-video'
-                        className='size-64 origin-center scale-150 object-cover object-center'
+                        className='object-cover object-center origin-center scale-150 size-64'
                         onLoadedData={handleVideoLoad}
                      />
                   </div>
@@ -136,31 +136,31 @@ const Hero = () => {
                   loop
                   muted
                   id='next-video'
-                  className='size-64 invisible absolute-center absolute z-20 object-cover object-center border-4'
+                  className='absolute z-20 invisible object-cover object-center border-4 size-64 absolute-center'
                   onLoadedData={handleVideoLoad}
                />
                <video
                   src={getVideoSrc(
                      currentIndex === totalVideos - 1 ? 1 : currentIndex
                   )}
-                  // autoPlay
+                  autoPlay
                   loop
-                  className='absolute top-0 left-0 size-full object-cover object-center'
+                  muted
+                  className='absolute top-0 left-0 object-cover object-center size-full'
                   onLoadedData={handleVideoLoad}
-                  s
                />
             </div>
 
-            <h1 className='special-font hero-heading absolute bottom-16  md:bottom-5 right-5 z-50 text-blue-75'>
+            <h1 className='absolute z-50 special-font hero-heading bottom-16 md:bottom-5 right-5 text-blue-75'>
                G<b>a</b>ming
             </h1>
 
-            <div className='absolute left-0 top-0 z-40 size-full '>
-               <div className='mt-24 px-5 sm:px-10'>
-                  <h1 className='special-font hero-heading text-blue-100'>
+            <div className='absolute top-0 left-0 z-40 size-full '>
+               <div className='px-5 mt-24 sm:px-10'>
+                  <h1 className='text-blue-100 special-font hero-heading'>
                      redefi<b>n</b>e
                   </h1>
-                  <p className='mb-5 max-w-64 font-robert-regular text-blue-100'>
+                  <p className='mb-5 text-blue-100 max-w-64 font-robert-regular'>
                      Enter the Metagame Layer <br /> Unleash the Play Economy
                   </p>
 
@@ -174,8 +174,8 @@ const Hero = () => {
             </div>
          </div>
 
-         <div className='absolute left-0 top-0  size-full text-black'>
-            <div className='mt-24 px-5 sm:px-10'>
+         <div className='absolute top-0 left-0 text-black size-full'>
+            <div className='px-5 mt-24 sm:px-10'>
                <h1 className='special-font hero-heading'>
                   redefi<b>n</b>e
                </h1>
@@ -185,7 +185,7 @@ const Hero = () => {
             </div>
          </div>
 
-         <h1 className='special-font hero-heading absolute bottom-16  md:bottom-5 right-5  text-black'>
+         <h1 className='absolute text-black special-font hero-heading bottom-16 md:bottom-5 right-5'>
             G<b>a</b>ming
          </h1>
       </div>
