@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./ui/Button";
 import { TiLocationArrow } from "react-icons/ti";
 import { useWindowScroll } from "react-use";
@@ -10,6 +10,7 @@ const Navbar = () => {
    const [isIndicatorActive, setIsIndicatorActive] = useState(false);
    const [lastScrollY, setLastScrollY] = useState(0);
    const [isNavVisible, setIsNavVisible] = useState(true);
+   const [showAudioPrompt, setShowAudioPrompt] = useState(true);
 
    const navContainerRef = useRef(null);
    const audioElementRef = useRef(null);
@@ -44,6 +45,8 @@ const Navbar = () => {
       setIsAudioPlaying((prev) => !prev);
 
       setIsIndicatorActive((prev) => !prev);
+
+      setShowAudioPrompt(false);
    };
 
    useEffect(() => {
@@ -56,10 +59,10 @@ const Navbar = () => {
    return (
       <div
          ref={navContainerRef}
-         className='fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6'
+         className='fixed inset-x-0 z-50 h-16 transition-all duration-700 border-none top-4 sm:inset-x-6'
       >
-         <header className='absolute top-1/2 w-full -translate-y-1/2'>
-            <nav className='flex items-center justify-between size-full p-4'>
+         <header className='absolute w-full -translate-y-1/2 top-1/2'>
+            <nav className='flex items-center justify-between p-4 size-full'>
                <div className='flex items-center gap-7'>
                   <a href='#'>
                      <img src='/img/logo.png' alt='logo' className='w-10' />
@@ -75,7 +78,7 @@ const Navbar = () => {
                   />
                </div>
 
-               <div className='flex h-full items-center'>
+               <div className='flex items-center h-full'>
                   <div className='hidden md:block'>
                      {navItems.map((item) => (
                         <a
@@ -88,26 +91,36 @@ const Navbar = () => {
                      ))}
                   </div>
 
-                  <button
-                     className='ml-10 flex items-center space-x-0.5'
-                     onClick={toggleAudioIndicator}
-                  >
-                     <audio
-                        ref={audioElementRef}
-                        src='/audio/loop.mp3'
-                        loop
-                        className='hidden'
-                     />
-                     {[1, 2, 3, 4, 5, 6].map((bar) => (
-                        <div
-                           key={bar}
-                           className={`indicator-line ${
-                              isIndicatorActive ? "active" : ""
-                           }`}
-                           style={{ animationDelay: `${bar * 0.1}s` }}
+                  <div className='relative'>
+                     <button
+                        className='ml-10 flex items-center space-x-0.5 relative'
+                        onClick={toggleAudioIndicator}
+                     >
+                        <audio
+                           ref={audioElementRef}
+                           src='/audio/loop.mp3'
+                           loop
+                           className='hidden'
                         />
-                     ))}
-                  </button>
+                        {[1, 2, 3, 4, 5, 6].map((bar) => (
+                           <div
+                              key={bar}
+                              className={`indicator-line ${
+                                 isIndicatorActive ? "active" : ""
+                              }`}
+                              style={{ animationDelay: `${bar * 0.1}s` }}
+                           />
+                        ))}
+                     </button>
+
+                     {/* Audio prompt tooltip */}
+                     {showAudioPrompt && (
+                        <div className='absolute right-0 w-48 p-2 mt-2 text-xs text-black bg-white rounded shadow-lg top-full'>
+                           Click to enable sound
+                           <div className='absolute w-3 h-3 transform rotate-45 bg-white -top-1 right-1'></div>
+                        </div>
+                     )}
+                  </div>
                </div>
             </nav>
          </header>
